@@ -40,7 +40,7 @@ def affiche_critical(l) : #permet de ne récupérer que les cas qui nous interre
 
 def allumage(l): #programme chargé de l'allumage de la led sur le raspberry
     logging.info('entré dans l allumage')
-    if (len(l) != 0) not(state) : #si la liste n'est pas vide et la LED est éteinte alors il y a des alertes critical donc on allume
+    if (len(l) != 0) and not(state) : #si la liste n'est pas vide et la LED est éteinte alors il y a des alertes critical donc on allume
         logging.info('led allumé')
         GPIO.output(LED, GPIO.HIGH) #allumage de la LED
         return True #utile pour verifier le bon fonctionnement du programme
