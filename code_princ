@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO #Importe la bibliothèque pour contrôler les GPIOs
 import requests #Importe le module pour faire les requettes curl
 import logging # Importe le module pour faire les logging
-import confiparser #Importe le module pour lire le fichier de configuration
+import configparser #Importe le module pour lire le fichier de configuration
 
 config = configparser.ConfigParser() #initialisation du configparser pour lire le fichier de conf
 
