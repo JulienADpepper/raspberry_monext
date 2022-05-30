@@ -9,6 +9,7 @@ config.read('config.ini') #ouvre le fichier de configuration
 
 print(config.sections()) #pour verifier que le fichier de conf est bien ouvert
 
+logging.basicConfig(level=logging.INFO) #config du logging 
 
 GPIO.setmode(GPIO.BOARD) #Définit le mode de numérotation (Board)
 GPIO.setwarnings(False) #On désactive les messages d'alerte
