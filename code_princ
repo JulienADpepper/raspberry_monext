@@ -51,4 +51,5 @@ def allumage(l): #programme chargé de l'allumage de la led sur le raspberry
 
 
 allumage(affiche_critical(l)) #lancement du code, mettre print devant pour verifier les sortie true et false
-#test pour push github
+#test pour cntlm
+
