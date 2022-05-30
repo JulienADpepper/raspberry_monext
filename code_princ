@@ -32,7 +32,7 @@ l=r.json() #le fichier json extrait de l'api est stoqué dans la liste de dictio
 def affiche_critical(l) : #permet de ne récupérer que les cas qui nous interresse 
     result=[] #après la requette cURL
     type_erreur = config['Filtre']['type_erreur'] #recupere du fichier de conf les bonnes valeurs
-    severite = config['Filtre']['niveau_de_severite] #récupere le niveau de severite du fichier de conf 
+    severite = int(config['Filtre']['niveau_de_severite]) #récupere le niveau de severite du fichier de conf 
     for i in l :
         if (i['type']==type_erreur) and (i['severity']==severite) :
             result.append(i) #result récupere les elements de l ayant le bon type d'erreur et la bonne severite
