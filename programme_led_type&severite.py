@@ -34,7 +34,7 @@ def allumage(listep): #fonction chargé de l'allumage de la led sur le raspberry
     state = GPIO.input(LED) #Lit l'état actuel du GPIO, vrai si allumé, faux si éteint
     result = []
     for i in listep :
-        if (i['eventId'] not in OL):
+        if (i['eventId'] not in OL) and (i['state']=='open'):
             result.append(i) #result récupere les elements de l ayant le bon type d'erreur et la bonne severite
     if (len(result) != 0) and not(state) : #si la liste n'est pas vide et la LED est éteinte alors il y a des alertes critical donc on allume
         logging.info('led allumé')
@@ -49,7 +49,7 @@ def acquittement(listep): #demande a l'utilisateur s'il veut acquitter les evenn
     logging.info('entré dans l acquittement')
     result=[]
     for i in listep :
-        if (i['eventId'] not in OL):
+        if (i['eventId'] not in OL) and (i['state']=='open'):
             result.append(i) #result récupere les elements de l ayant le bon type d'erreur et la bonne severite
     for k in result :
         question = "voulez-vous acquiter l'event : ",  i['eventId'], "?"

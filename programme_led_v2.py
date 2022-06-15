@@ -34,7 +34,7 @@ def liste_des_erreurs(listep) : #permet de ne récupérer que les cas qui nous i
     type_erreur = config['Filtre']['type_erreur'] #recupere du fichier de conf les bonnes valeurs
     severite = int(config['Filtre']['niveau_de_severite']) #récupere le niveau de severite du fichier de conf 
     for i in listep :
-        if (i['type']==type_erreur) and (i['severity']==severite) and (i['eventId'] not in OL):
+        if (i['type']==type_erreur) and (i['severity']==severite) and (i['state']=='open') and (i['eventId'] not in OL):
             result.append(i) #result récupere les elements de l ayant le bon type d'erreur et la bonne severite
     return result
 
