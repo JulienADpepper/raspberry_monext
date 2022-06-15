@@ -29,74 +29,86 @@ def home():
 logging.info('page principale affiche')
 
 # Route permettant de récupérer toutes les données de l’annuaire
-@app.route('/index.py/api/v1/event/all', methods=['GET'])
+@app.route('/api/event/all', methods=['GET'])
 def api_all():
-   return jsonify(event)
+    l = jsonify(event)
+    Var = {'r':event}
+    exec(open('/home/jaime/raspberry_MONEXT/programme_led_v2.py').read(), Var)#execute le programme pour allumer la led
+    return l
 
 #recupère les event trié par type
-@app.route('/index.py/api/v1/event/type=<caract>', methods=['GET'])
+@app.route('/api/event/type=<caract>', methods=['GET'])
 def api_issue(caract) :
     r = []
     for e in event:
         if e['type']==caract :
             r.append(e)
-    return jsonify(r)
+    l=jsonify(r)
+    return l
     
 #recupere les events trié par niveau de severite
-@app.route('/index.py/api/v1/event/severite=<entier>',methods=['GET'])
+@app.route('/api/event/severite=<entier>',methods=['GET'])
 def api_severite(entier):
     r=[]
     entier=int(entier)
     for e in event :
         if e['severity']==entier :
             r.append(e)
-    return jsonify(r)
+    l=jsonify(r)
+    return l
 
 #recupere les events trié par ID
-@app.route('/index.py/api/v1/event/Id=<id>',methods=['GET'])
+@app.route('/api/event/Id=<id>',methods=['GET'])
 def api_id(id):
     r=[]
     for e in event:
         if e['eventId']==id :
             r.append(e)
-    return jsonify(r)
+    l=jsonify(r)
+    return l
 
 #recupere les events trié par type d'entité
-@app.route('/index.py/api/v1/event/entityType=<type>',methods=['GET'])
+@app.route('/api/event/entityType=<type>',methods=['GET'])
 def api_entityType(type):
     r=[]
     for e in event:
         if e['entityType']==type :
             r.append(e)
-    return jsonify(r)
+    l=jsonify(r)
+    return l
 
 #recupere les events trié par nom d'entité
-@app.route('/index.py/api/v1/event/entityName=<nom>',methods=['GET'])
+@app.route('/api/event/entityName=<nom>',methods=['GET'])
 def api_entityName(nom):
     r=[]
     for e in event:
         if e['entityName']==nom :
             r.append(e)
-    return jsonify(r)
+    l=jsonify(r)
+    return l
 
 #double filtrage par nom et type d'entité
-@app.route('/index.py/api/v1/event/entityName=<nom>&entityType=<type>',methods=['GET'])
+@app.route('/api/event/entityName=<nom>&entityType=<type>',methods=['GET'])
 def api_doubleEntity(nom, type):
     r=[]
     for e in event :
         if e['entityName']==nom and e['entityType']==type :
             r.append(e)
-    return jsonify(r)
+    l=jsonify(r)
+    return l
 
 #double filtrage par type d'event et niveau de severité
-@app.route('/index.py/api/v1/event/type=<type>&severite=<entier>',methods=['GET'])
+@app.route('/api/event/type=<type>&severite=<entier>',methods=['GET'])
 def api_type_severite(type, entier):
     r=[]
     entier=int(entier)
     for e in event :
         if e['type']==type and e['severity']==entier :
             r.append(e)
-    return jsonify(r)
+    l=jsonify(r)
+    Var = {'r':r}
+    exec(open('/home/jaime/raspberry_MONEXT/programme_led_type&severite.py').read(), Var)#execute le programme pour allumer la led
+    return l
 
 #lancement 
 app.run()
